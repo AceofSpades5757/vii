@@ -29,6 +29,23 @@ let vim_string = String("Hello World!".to_string());
 let serialized_string = vim_string.to_string();  // "\"Hello World!\""
 ```
 
+## Data Types
+
+List of data type support.
+
+- [x] Number
+- [x] String
+- [ ] Funcref
+- [x] List
+- [ ] Dictionary
+    * Work in progress using `HashMap<String, String>`
+- [x] Float
+- [x] Boolean
+- [x] None
+- [ ] Job
+- [ ] Channel
+- [ ] Blob
+
 # Contributing
 
 If there are any features you would like added, found any potential bugs, or have any questions, then feel free to create an issue.
