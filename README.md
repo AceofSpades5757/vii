@@ -28,3 +28,7 @@ let serialized_float = vim_float.to_string();  // "3.14"
 let vim_string = String("Hello World!".to_string());
 let serialized_string = vim_string.to_string();  // "\"Hello World!\""
 ```
+
+# Contributing
+
+If there are any features you would like added, found any potential bugs, or have any questions, then feel free to create an issue.
