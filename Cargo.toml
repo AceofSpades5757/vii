@@ -3,6 +3,14 @@ name = "vii"
 version = "0.0.1"
 authors = ["Kyle L. Davis <aceofspades5757.github@gmail.com>"]
 edition = "2021"
+description = "Bindings to Vim objects, bindings to Vim channel commands, and a way to interact with Vim using Rust."
+
+readme = "README.md"
+license = "MIT"
+license-file = "LICENSE"
+
+homepage = "https://github.com/AceofSpades5757/vii"
+repository = "https://github.com/AceofSpades5757/vii"
 
 [dependencies]
 
