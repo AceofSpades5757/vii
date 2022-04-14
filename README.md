@@ -6,26 +6,23 @@ Aims to be able to eventually write standard plugins in Rust, and potentially se
 
 Add this line to your dependencies section of your `Cargo.toml` file.
 
-`vii = "0.1"`
+`vii = "0.0.1"`
+
+_Current interface is highly unstable._
 
 # Usage
 
 Working with Vim data types.
 
 ``` rust
-use vii::DataTypes;
-use vii::DataTypes{
-  String,
-  Number,
-  Float
-};
+use vii::types::DataType;
 
 // Using a Vim data type
-let vim_float = Float(3.14);
+let vim_float = DataType::Float(3.14);
 // Serializing for transmission to Vim
 let serialized_float = vim_float.to_string();  // "3.14"
 
-let vim_string = String("Hello World!".to_string());
+let vim_string = DataType::String("Hello World!".to_string());
 let serialized_string = vim_string.to_string();  // "\"Hello World!\""
 ```
 
