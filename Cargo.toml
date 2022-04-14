@@ -1,7 +1,7 @@
 [package]
 name = "vii"
 version = "0.0.1"
-authors = ["Kyle L. Davis"]
+authors = ["Kyle L. Davis <aceofspades5757.github@gmail.com>"]
 edition = "2021"
 
 [dependencies]
