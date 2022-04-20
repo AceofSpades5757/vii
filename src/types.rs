@@ -17,11 +17,10 @@ use std::collections::HashMap;
 ///Blob:	   10  |v:t_blob|
 #[derive(Debug, PartialEq, Clone)]
 pub enum DataType {
-
     // TODO: Add the type ID (numbers)
     Number(i32),
     String(String),
-    Funcref,  // TODO
+    Funcref, // TODO
     List(Vec<DataType>),
     //Dictionary(HashMap<DataType::String, DataType>),  // TODO: implement
     Dictionary(HashMap<String, String>),
@@ -29,14 +28,13 @@ pub enum DataType {
     Boolean(bool),
     None,
 
-    Job,  // TODO
-    Channel,  // TODO
-    Blob,  // TODO
+    Job,     // TODO
+    Channel, // TODO
+    Blob,    // TODO
 }
 
 /// Implement to_string functionality.
 impl DataType {
-
     pub fn to_string(&self) -> String {
         match self {
             DataType::Number(i) => i.to_string(),
@@ -47,13 +45,12 @@ impl DataType {
                     true => "v:true".to_string(),
                     false => "v:false".to_string(),
                 }
-            },
+            }
             // WARNING: Removes decimal point if there are no decimals
             DataType::Float(f) => f.to_string(),
             DataType::String(s) => format!("\"{}\"", s),
             //DataType::Funcref => "funcref".to_string(),
             DataType::List(v) => {
-
                 // Open List
                 let mut s = "[".to_string();
 
@@ -72,15 +69,15 @@ impl DataType {
                 s
             }
             //DataType::Dictionary(d) => {
-                //let mut s = "{".to_string();
-                //for (k, v) in d {
-                    //s.push_str(&k);
-                    //s.push_str(": ");
-                    //s.push_str(&v);
-                    //s.push_str(", ");
-                //}
-                //s.push_str("}");
-                //s
+            //let mut s = "{".to_string();
+            //for (k, v) in d {
+            //s.push_str(&k);
+            //s.push_str(": ");
+            //s.push_str(&v);
+            //s.push_str(", ");
+            //}
+            //s.push_str("}");
+            //s
             //}
             // TODO: Add support for Vim's other variant (v:none)
             // This is for the variant supported by both Neovim and Vim
@@ -100,48 +97,30 @@ mod tests_datatype {
 
     #[test]
     fn test_datatype_to_string() {
-        assert_eq!(
-            DataType::Boolean(true).to_string(),
-            "v:true",
-        );
-        assert_eq!(
-            DataType::Boolean(false).to_string(),
-            "v:false",
-        );
+        assert_eq!(DataType::Boolean(true).to_string(), "v:true",);
+        assert_eq!(DataType::Boolean(false).to_string(), "v:false",);
 
-        assert_eq!(
-            DataType::Float(1.0).to_string(),
-            "1",
-        );
-        assert_eq!(
-            DataType::Float(3.1459).to_string(),
-            "3.1459",
-        );
+        assert_eq!(DataType::Float(1.0).to_string(), "1",);
+        assert_eq!(DataType::Float(3.1459).to_string(), "3.1459",);
 
-        assert_eq!(
-            DataType::String("test".to_string()).to_string(),
-            "\"test\"",
-        );
+        assert_eq!(DataType::String("test".to_string()).to_string(), "\"test\"",);
         //assert_eq!(
-            //DataType::List(vec![DataType::String("test".to_string())]).to_string(),
-            //"[\"test\"]",
+        //DataType::List(vec![DataType::String("test".to_string())]).to_string(),
+        //"[\"test\"]",
         //);
         //assert_eq!(
-            //DataType::Dictionary(
-                //vec![
-                    //("test".to_string(), DataType::String("test".to_string())),
-                    //("test2".to_string(), DataType::String("test2".to_string())),
-                //]
-            //).to_string(),
-            //"{\"test\": \"test\", \"test2\": \"test2\"}",
+        //DataType::Dictionary(
+        //vec![
+        //("test".to_string(), DataType::String("test".to_string())),
+        //("test2".to_string(), DataType::String("test2".to_string())),
+        //]
+        //).to_string(),
+        //"{\"test\": \"test\", \"test2\": \"test2\"}",
         //);
-        assert_eq!(
-            DataType::None.to_string(),
-            "v:null",
-        );
+        assert_eq!(DataType::None.to_string(), "v:null",);
         //assert_eq!(
-            //DataType::Job.to_string(),
-            //"Job",
+        //DataType::Job.to_string(),
+        //"Job",
         //);
     }
 }
