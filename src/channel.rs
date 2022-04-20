@@ -41,7 +41,7 @@ pub struct Call {
 
 #[derive(Debug, PartialEq)]
 pub enum ChannelCommand {
-    Redraw {forced: bool},
+    Redraw { forced: bool },
     Ex(ExCommand),
     Normal(NormalCommand),
     Expr(Expression, Option<RequestId>),
