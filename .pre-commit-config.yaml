@@ -1,0 +1,16 @@
+repos:
+# Check YAML; Fix end of files; Fix trailing whitespace
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.2.0
+  hooks:
+  - id: check-yaml
+    name: Check Yaml
+  - id: end-of-file-fixer
+    name: Fix End of Files
+  - id: trailing-whitespace
+    name: Fix Trailing Whitespace
+# Formatter (cargo fmt), Validator, Linter
+- repo: https://github.com/doublify/pre-commit-rust
+  rev: v1.0
+  hooks:
+    - id: fmt
