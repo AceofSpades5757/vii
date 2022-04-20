@@ -8,7 +8,7 @@ Aims to be able to eventually write standard plugins in Rust, and potentially se
 
 Add this line to your dependencies section of your `Cargo.toml` file.
 
-`vii = "0.0.1"`
+`vii = "0.0.4"`
 
 _Current interface is highly unstable._
 
@@ -51,7 +51,7 @@ List of data type support.
 
 Working with Vim channels (see `:help channel.txt` in Vim).
 
-_Note: This is a low-level API. The eventual, high-level API should look like `let expr = Expr::from("line('$')");`.
+_Note: This is a low-level API. The eventual, high-level API should look like `let expr = Expr::from("line('$')");`._
 
 ``` rust
 use vii::channel::{
