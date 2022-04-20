@@ -56,6 +56,12 @@ pub enum ChannelCommand {
     Unknown,
 }
 
+impl Default for ChannelCommand {
+    fn default() -> Self {
+        ChannelCommand::Unknown
+    }
+}
+
 impl ChannelCommand {
 
     fn to_datatypes(&self) -> Vec<DataType> {
@@ -88,6 +94,14 @@ impl ChannelCommand {
 mod tests {
 
     use super::*;
+
+    #[test]
+    fn test_channel_command_default() {
+
+        let default: ChannelCommand = Default::default();
+        assert_eq!(default, ChannelCommand::Unknown);
+
+    }
 
     #[test]
     fn test_channel_command_to_datatypes() {
