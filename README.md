@@ -1,3 +1,5 @@
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+
 Bindings to Vim objects, bindings to Vim _channel commands_, and a way to interact with Vim using Rust.
 
 Aims to be able to eventually write standard plugins in Rust, and potentially services for Vim in Rust using channels.
