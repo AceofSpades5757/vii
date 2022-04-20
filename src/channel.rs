@@ -28,17 +28,24 @@ pub struct NormalCommand {
     pub command: String,
 }
 
+/// Vim expression.
+/// e.g. line('$')
 #[derive(Debug, PartialEq)]
 pub struct Expression {
     pub expression: String,
 }
 
+/// Vim Function Call
+/// e.g. `:call line('$')`
 #[derive(Debug, PartialEq)]
 pub struct Call {
     pub function: String,
     pub args: Vec<DataType>,
 }
 
+/// Vim Function Call
+/// `:help channel-commands`
+/// e.g. `:call line('$')`
 #[derive(Debug, PartialEq)]
 pub enum ChannelCommand {
     Redraw { forced: bool },
