@@ -85,6 +85,127 @@ impl ChannelCommand {
                 }
                 args
             },
+            ChannelCommand::Expr(expr_command, request_id) => {
+
+                let mut args = Vec::new();
+
+                args.push(DataType::String(expr_command.expression.clone()));
+
+                if let Some(request_id) = request_id {
+                    args.push(DataType::Number(request_id.0));
+                }
+
+                args
+            },
+            _ => unimplemented!(),
+        }
+    }
+}
+
+impl ChannelCommand {
+
+    pub fn to_string(&self) -> String {
+        match self {
+            ChannelCommand::Redraw {forced: _} => {
+
+                let mut list = self.to_datatypes();
+                list.insert(0, DataType::String("redraw".to_string()));
+
+                let mut string = String::new();
+
+                // Start
+                string.push_str("[");
+
+                // Args
+                for i in list {
+                    string.push_str(&i.to_string());
+                    string.push_str(", ");
+                }
+
+                // Remove last ", "
+                string.pop();
+                string.pop();
+
+                // End
+                string.push_str("]");
+
+                return string;
+            },
+            ChannelCommand::Normal {..} => {
+
+                let mut list = self.to_datatypes();
+                list.insert(0, DataType::String("normal".to_string()));
+
+                let mut string = String::new();
+
+                // Start
+                string.push_str("[");
+
+                // Args
+                for i in list {
+                    string.push_str(&i.to_string());
+                    string.push_str(", ");
+                }
+
+                // Remove last ", "
+                string.pop();
+                string.pop();
+
+                // End
+                string.push_str("]");
+
+                return string;
+            },
+            ChannelCommand::Call {..} => {
+
+                let mut list = self.to_datatypes();
+                list.insert(0, DataType::String("call".to_string()));
+
+                let mut string = String::new();
+
+                // Start
+                string.push_str("[");
+
+                // Args
+                for i in list {
+                    string.push_str(&i.to_string());
+                    string.push_str(", ");
+                }
+
+                // Remove last ", "
+                string.pop();
+                string.pop();
+
+                // End
+                string.push_str("]");
+
+                return string;
+            },
+            ChannelCommand::Expr {..} => {
+
+                let mut list = self.to_datatypes();
+                list.insert(0, DataType::String("expr".to_string()));
+
+                let mut string = String::new();
+
+                // Start
+                string.push_str("[");
+
+                // Args
+                for i in list {
+                    string.push_str(&i.to_string());
+                    string.push_str(", ");
+                }
+
+                // Remove last ", "
+                string.pop();
+                string.pop();
+
+                // End
+                string.push_str("]");
+
+                return string;
+            },
             _ => unimplemented!(),
         }
     }
@@ -123,4 +244,43 @@ mod tests {
         assert_eq!(call.to_datatypes(), expected);
 
     }
+
+    #[test]
+    fn test_channel_command_to_string() {
+
+        // Tests boolean and String DataType Variants
+        //"[\"redraw\", v:true]"
+        let expected = "[\"redraw\", v:false]";
+        let redraw = ChannelCommand::Redraw{forced: false};
+        assert_eq!(redraw.to_string(), expected);
+
+        let expected = "[\"normal\", \"gg\"]";
+        let normal = ChannelCommand::Normal(
+            NormalCommand  {
+                command: "gg".to_string(),
+            }
+        );
+        assert_eq!(normal.to_string(), expected);
+
+        let expected = "[\"call\", \"getline\", [15], 1]";
+        let call = ChannelCommand::Call(
+            Call {
+                function: "getline".to_string(),
+                args: vec![DataType::Number(15)],
+            },
+            Some(RequestId(1)),
+        );
+        assert_eq!(call.to_string(), expected);
+
+        let expected = "[\"expr\", \"getline('$')\", 3]";
+        let expr = ChannelCommand::Expr(
+            Expression {
+                expression: "getline('$')".to_string(),
+            },
+            Some(RequestId(3)),
+        );
+        assert_eq!(expr.to_string(), expected);
+
+    }
+
 }
