@@ -51,6 +51,8 @@ List of data type support.
 
 Working with Vim channels (see `:help channel.txt` in Vim).
 
+_Note: This is a low-level API. The eventual, high-level API should look like `let expr = Expr::from("line('$')");`.
+
 ``` rust
 use vii::channel::{
   ChannelCommand,
@@ -76,6 +78,12 @@ let call = ChannelCommand::Call(
   },
   None,
 );
+
+
+println!("{}", expression.to_string());
+// ["expr","line('$')"]
+println!("{}", call.to_string());
+// ["call", "line", ["$"]]
 ```
 
 # Contributing
