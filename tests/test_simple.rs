@@ -9,6 +9,7 @@ mod tests {
         // No Errors Should Occur
 
         use vii::DataType;
+        use vii::channel;
 
     }
 }
