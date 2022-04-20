@@ -15,7 +15,7 @@ _Current interface is highly unstable._
 Working with Vim data types.
 
 ``` rust
-use vii::types::DataType;
+use vii::DataType;
 
 // Using a Vim data type
 let vim_float = DataType::Float(3.14);

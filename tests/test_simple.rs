@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod tests {
 
-    use vii::types::DataType;
+    use vii::DataType;
 
     #[test]
     fn test_package() {
