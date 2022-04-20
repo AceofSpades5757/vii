@@ -1,12 +1,14 @@
 #[cfg(test)]
 mod tests {
 
-    use vii::DataType;
 
     #[test]
-    fn test_package() {
-        let d = DataType::String("Hello".to_string());
+    #[allow(unused_imports)]
+    fn test_public_api() {
 
-        assert_eq!(d.to_string(), "\"Hello\"");
+        // No Errors Should Occur
+
+        use vii::DataType;
+
     }
 }
