@@ -14,6 +14,8 @@ _Current interface is highly unstable._
 
 # Usage
 
+## Data Types
+
 Working with Vim data types.
 
 ``` rust
@@ -28,7 +30,7 @@ let vim_string = DataType::String("Hello World!".to_string());
 let serialized_string = vim_string.to_string();  // "\"Hello World!\""
 ```
 
-## Data Types
+### Support
 
 List of data type support.
 
@@ -44,6 +46,37 @@ List of data type support.
 - [ ] Job
 - [ ] Channel
 - [ ] Blob
+
+## Vim Channels
+
+Working with Vim channels (see `:help channel.txt` in Vim).
+
+``` rust
+use vii::channel::{
+  ChannelCommand,
+  Call,
+  Expression,
+};
+
+// Number of Lines in Current Buffer
+// ["expr","line('$')"]
+let expression = ChannelCommand::Expr(
+  Expression {
+    expression: "line('$')".to_string(),
+  },
+  None,
+);
+
+// Number of Lines in Current Buffer
+// ["call", "line", ["$"]]
+let call = ChannelCommand::Call(
+  Call {
+    function: "line".to_string(),
+    args: vec![DataType::String("$")],
+  },
+  None,
+);
+```
 
 # Contributing
 
