@@ -35,6 +35,17 @@ pub struct Expression {
     pub expression: String,
 }
 
+impl Expression {
+    fn from_string(string: String) -> Self {
+        Self {
+            expression: string,
+        }
+    }
+    fn from_str(str_: &str) -> Self {
+        Self::from_string(str_.to_string())
+    }
+}
+
 /// Vim Function Call
 /// e.g. `:call line('$')`
 #[derive(Debug, PartialEq)]
@@ -264,5 +275,14 @@ mod tests {
             Some(RequestId(3)),
         );
         assert_eq!(expr.to_string(), expected);
+    }
+
+    #[test]
+    fn test_expression_froms() {
+        let expr = Expression {
+            expression: "getline('$')".to_string(),
+        };
+        assert_eq!(expr, Expression::from_string("getline('$')".to_string()));
+        assert_eq!(expr, Expression::from_str("getline('$')"));
     }
 }
