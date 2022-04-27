@@ -11,7 +11,7 @@ repos:
     name: Fix Trailing Whitespace
 # Formatter (cargo fmt), Validator, Linter
 - repo: https://github.com/AceofSpades5757/rustfmt
-  rev: master
+  rev: 10eae9c6dbd41513951d71f70ff1ab864e86a75c
   hooks:
     - id: rustfmt
       name: Rust Formatter
