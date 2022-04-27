@@ -37,9 +37,7 @@ pub struct Expression {
 
 impl Expression {
     fn from_string(string: String) -> Self {
-        Self {
-            expression: string,
-        }
+        Self { expression: string }
     }
     fn from_str(str_: &str) -> Self {
         Self::from_string(str_.to_string())
