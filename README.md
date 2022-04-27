@@ -1,4 +1,8 @@
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![Coverage](https://github.com/AceofSpades5757/vii/actions/workflows/tests.yml/badge.svg)](https://github.com/AceofSpades5757/vii/actions/workflows/tests.yml)
+
+[![cargo.io](https://img.shields.io/crates/v/vii)](https://crates.io/crates/vii)
+![License](https://img.shields.io/crates/l/vii?color=purple)
 
 Bindings to Vim objects, bindings to Vim _channel commands_, and a way to interact with Vim using Rust.
 
