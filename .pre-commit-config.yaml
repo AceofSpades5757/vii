@@ -14,3 +14,5 @@ repos:
   #rev: v1.0
   #hooks:
     #- id: fmt
+      #name: Rust Formatter
+      #description: Formats Rust source code.
