@@ -1,4 +1,4 @@
-    Bindings to Vim objects, bindings to Vim _channel commands_, and a way to interact with Vim using Rust.
+    Rust interface to working with Vim.
 
     Copyright © 2022 Kyle L. Davis
 
