@@ -14,5 +14,5 @@ repos:
   - id: cargo-fmt
     name: cargo fmt
     language: rust
-    entry: cargo fmt
+    entry: rustfmt
     types: [rust]
