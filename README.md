@@ -12,7 +12,7 @@ Aims to be able to eventually write standard plugins in Rust, and potentially se
 
 Add this line to your dependencies section of your `Cargo.toml` file.
 
-`vii = "0.0.5"`
+`vii = "0.0"`
 
 _Current interface is highly unstable._
 
