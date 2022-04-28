@@ -35,6 +35,7 @@ pub struct Expression {
     pub expression: String,
 }
 
+#[allow(dead_code)]
 impl Expression {
     fn from_string(string: String) -> Self {
         Self { expression: string }
@@ -104,7 +105,16 @@ impl ChannelCommand {
 
                 args
             }
-            _ => unimplemented!(),
+            ChannelCommand::Ex(ex_command) => {
+                let mut args = Vec::new();
+
+                args.push(DataType::String(ex_command.command.clone()));
+
+                args
+            }
+            ChannelCommand::Unknown => {
+                unimplemented!("This Channel Command is unknown.");
+            }
         }
     }
 }
@@ -116,99 +126,125 @@ impl ChannelCommand {
                 let mut list = self.to_datatypes();
                 list.insert(0, DataType::String("redraw".to_string()));
 
-                let mut string = String::new();
+                let mut buffer = String::new();
 
                 // Start
-                string.push_str("[");
+                buffer.push_str("[");
 
                 // Args
                 for i in list {
-                    string.push_str(&i.to_string());
-                    string.push_str(", ");
+                    buffer.push_str(&i.to_string());
+                    buffer.push_str(", ");
                 }
 
                 // Remove last ", "
-                string.pop();
-                string.pop();
+                buffer.pop();
+                buffer.pop();
 
                 // End
-                string.push_str("]");
+                buffer.push_str("]");
 
-                return string;
+                return buffer;
             }
             ChannelCommand::Normal { .. } => {
                 let mut list = self.to_datatypes();
                 list.insert(0, DataType::String("normal".to_string()));
 
-                let mut string = String::new();
+                let mut buffer = String::new();
 
                 // Start
-                string.push_str("[");
+                buffer.push_str("[");
 
                 // Args
                 for i in list {
-                    string.push_str(&i.to_string());
-                    string.push_str(", ");
+                    buffer.push_str(&i.to_string());
+                    buffer.push_str(", ");
                 }
 
                 // Remove last ", "
-                string.pop();
-                string.pop();
+                buffer.pop();
+                buffer.pop();
 
                 // End
-                string.push_str("]");
+                buffer.push_str("]");
 
-                return string;
+                return buffer;
             }
             ChannelCommand::Call { .. } => {
                 let mut list = self.to_datatypes();
                 list.insert(0, DataType::String("call".to_string()));
 
-                let mut string = String::new();
+                let mut buffer = String::new();
 
                 // Start
-                string.push_str("[");
+                buffer.push_str("[");
 
                 // Args
                 for i in list {
-                    string.push_str(&i.to_string());
-                    string.push_str(", ");
+                    buffer.push_str(&i.to_string());
+                    buffer.push_str(", ");
                 }
 
                 // Remove last ", "
-                string.pop();
-                string.pop();
+                buffer.pop();
+                buffer.pop();
 
                 // End
-                string.push_str("]");
+                buffer.push_str("]");
 
-                return string;
+                return buffer;
             }
             ChannelCommand::Expr { .. } => {
                 let mut list = self.to_datatypes();
                 list.insert(0, DataType::String("expr".to_string()));
 
-                let mut string = String::new();
+                let mut buffer = String::new();
 
                 // Start
-                string.push_str("[");
+                buffer.push_str("[");
 
                 // Args
                 for i in list {
-                    string.push_str(&i.to_string());
-                    string.push_str(", ");
+                    buffer.push_str(&i.to_string());
+                    buffer.push_str(", ");
                 }
 
                 // Remove last ", "
-                string.pop();
-                string.pop();
+                buffer.pop();
+                buffer.pop();
 
                 // End
-                string.push_str("]");
+                buffer.push_str("]");
 
-                return string;
+                return buffer;
             }
-            _ => unimplemented!(),
+            ChannelCommand::Ex { .. } => {
+                let mut list = self.to_datatypes();
+                list.insert(0, DataType::String("ex".to_string()));
+
+                let mut buffer = String::new();
+
+                // Start
+                buffer.push_str("[");
+
+                // Args
+                for i in list {
+                    buffer.push_str(&i.to_string());
+                    buffer.push_str(", ");
+                }
+
+                // Remove last ", "
+                buffer.pop();
+                buffer.pop();
+
+                // End
+                buffer.push_str("]");
+
+                return buffer;
+            }
+            ChannelCommand::Unknown => {
+                unimplemented!("This Channel Command is unknown.");
+            }
         }
     }
 }
