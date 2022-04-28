@@ -9,10 +9,10 @@ repos:
     name: Fix End of Files
   - id: trailing-whitespace
     name: Fix Trailing Whitespace
-# Formatter (cargo fmt), Validator, Linter
-- repo: https://github.com/AceofSpades5757/rustfmt
-  rev: 10eae9c6dbd41513951d71f70ff1ab864e86a75c
+- repo: local
   hooks:
-    - id: rustfmt
-      name: Rust Formatter
-      description: Formats Rust source code.
+  - id: cargo-fmt
+    name: cargo fmt
+    language: rust
+    entry: cargo fmt
+    types: [rust]
