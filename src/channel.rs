@@ -279,18 +279,19 @@ mod tests {
 
     #[test]
     fn test_channel_command_to_string() {
-        // Tests boolean and String DataType Variants
-        //"[\"redraw\", v:true]"
+        // Redraw
         let expected = "[\"redraw\", v:false]";
         let redraw = ChannelCommand::Redraw { forced: false };
         assert_eq!(redraw.to_string(), expected);
 
+        // Normal
         let expected = "[\"normal\", \"gg\"]";
         let normal = ChannelCommand::Normal(NormalCommand {
             command: "gg".to_string(),
         });
         assert_eq!(normal.to_string(), expected);
 
+        // Call
         let expected = "[\"call\", \"getline\", [15], 1]";
         let call = ChannelCommand::Call(
             Call {
@@ -301,6 +302,7 @@ mod tests {
         );
         assert_eq!(call.to_string(), expected);
 
+        // Expression
         let expected = "[\"expr\", \"getline('$')\", 3]";
         let expr = ChannelCommand::Expr(
             Expression {
@@ -308,6 +310,13 @@ mod tests {
             },
             Some(RequestId(3)),
         );
+        assert_eq!(expr.to_string(), expected);
+
+        // Ex Command
+        let expected = "[\"ex\", \"call getline('$')\"]";
+        let expr = ChannelCommand::Ex(ExCommand {
+            command: "call getline('$')".to_string(),
+        });
         assert_eq!(expr.to_string(), expected);
     }
 
