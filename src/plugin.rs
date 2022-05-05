@@ -8,7 +8,7 @@ pub struct PluginConfig {
 }
 
 impl PluginConfig {
-    fn new(ip: String, port: String) -> Self {
+    pub fn new(ip: String, port: String) -> Self {
         Self { ip, port }
     }
 }
@@ -48,11 +48,12 @@ mod tests {
             fn plugin(&mut self, stream: &mut TcpStream) -> Result<(), String> {
                 Ok(())
             }
+            fn run(&mut self) {}
         }
 
-        let plugin = MyPlugin;
+        let mut plugin = MyPlugin;
 
-        MyPlugin.run();
+        plugin.run();
         // Need mock stream
         //assert_eq!(Ok(()), MyPlugin.plugin());
     }
