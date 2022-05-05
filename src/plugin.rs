@@ -1,9 +1,6 @@
 /// Vim Plugin
-use std::io::Write;
 use std::net::TcpListener;
 use std::net::TcpStream;
-
-use simple_logger::SimpleLogger;
 
 pub struct PluginConfig {
     ip: String,
@@ -16,28 +13,30 @@ impl PluginConfig {
     }
 }
 
-trait Plugin {
+pub trait Plugin {
     /// Get Config for Plugin
     fn get_config(&self) -> PluginConfig;
     /// Plugin for Vim
     fn plugin(&mut self, stream: &mut TcpStream) -> Result<(), String>;
     /// Starts Plugin
-    fn start(&mut self) {
-        let PluginConfig = self.get_config();
-        let listener =
-            TcpListener::bind(format!("{}:{}", PluginConfig.ip, PluginConfig.port)).unwrap();
+    fn run(&mut self) {
+        let config = self.get_config();
+        let listener = TcpListener::bind(format!("{}:{}", config.ip, config.port)).unwrap();
 
         match listener.accept() {
             Ok((mut stream, _addr)) => {
                 self.plugin(&mut stream).expect("Plugin failed to run.");
             }
-            Err(err) => log::warn!("Unable to get client: {:?}", err),
+            Err(err) => eprintln!("Unable to get client: {:?}", err),
         }
     }
 }
 
 #[cfg(test)]
 mod tests {
+
+    use super::*;
+
     #[test]
     fn test_simple() {
         struct MyPlugin;
@@ -53,7 +52,8 @@ mod tests {
 
         let plugin = MyPlugin;
 
-        MyPlugin.start();
-        assert_eq!(Ok(()), MyPlugin.run());
+        MyPlugin.run();
+        // Need mock stream
+        //assert_eq!(Ok(()), MyPlugin.plugin());
     }
 }
