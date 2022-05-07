@@ -1,4 +1,9 @@
-/// Vim Plugin
+//! Vim Plugin
+//!
+//! Acts as if it was a Vim plugin. It'll run once on startup, assuming the main function only runs
+//! it once, and can add functions, commands, global variables, and practically any other
+//! functionality that can be added by a typical Vim plugin.
+
 use std::net::TcpListener;
 use std::net::TcpStream;
 

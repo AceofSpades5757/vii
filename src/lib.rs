@@ -18,7 +18,7 @@ pub mod types;
 /// Data Types
 pub use self::types::DataType;
 
-// Channels (channel.txt)
+/// Vim Channels (channel.txt)
 pub mod channel;
 
 /// Vim Plugin

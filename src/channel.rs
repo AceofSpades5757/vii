@@ -1,3 +1,5 @@
+//! Vim Channels (channel.txt)
+//!
 //! Source: https://vimhelp.org/channel.txt.html#channel-commands
 //!
 //! Vim has 5 different channel commands:
