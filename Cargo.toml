@@ -1,6 +1,6 @@
 [package]
 name = "vii"
-version = "0.0.7"
+version = "0.0.8"
 authors = ["Kyle L. Davis <aceofspades5757.github@gmail.com>"]
 edition = "2021"
 description = "Bindings to Vim objects, bindings to Vim channel commands, and a way to interact with Vim using Rust."
