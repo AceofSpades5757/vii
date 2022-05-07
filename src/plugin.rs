@@ -45,7 +45,7 @@ mod tests {
             fn get_config(&self) -> PluginConfig {
                 PluginConfig::new("127.0.0.1".to_string(), "8765".to_string())
             }
-            fn plugin(&mut self, stream: &mut TcpStream) -> Result<(), String> {
+            fn plugin(&mut self, _stream: &mut TcpStream) -> Result<(), String> {
                 Ok(())
             }
             fn run(&mut self) {}
