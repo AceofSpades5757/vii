@@ -6,7 +6,7 @@
 
 Bindings to Vim objects, bindings to Vim _channel commands_, and a way to interact with Vim using Rust.
 
-Aims to be able to eventually write standard plugins in Rust, and potentially services for Vim in Rust using channels.
+Using this library, you can wite standard plugins, all in Rust, which get run just like a Vim plugin would typically run.
 
 # Installation
 
