@@ -5,3 +5,4 @@ pub use self::types::DataType;
 
 // Channels (channel.txt)
 pub mod channel;
+pub mod plugin;
