@@ -4,6 +4,8 @@
 [![cargo.io](https://img.shields.io/crates/v/vii)](https://crates.io/crates/vii)
 ![License](https://img.shields.io/crates/l/vii?color=purple)
 
+[![rust badge](https://img.shields.io/static/v1?label=Made%20with&message=Rust&style=for-the-badge&logo=rust&labelColor=e82833&color=b11522)](https://www.rust-lang.org/)
+
 Bindings to Vim objects, bindings to Vim _channel commands_, and a way to interact with Vim using Rust.
 
 Using this library, you can wite standard plugins, all in Rust, which get run just like a Vim plugin would typically run.
