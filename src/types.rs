@@ -1,20 +1,46 @@
 //! Vim Data Types
 //!
-//! Vim ex command - `:help type()`
+//! Vim Documentation: [`:help type()`](https://vimhelp.org/builtin.txt.html#type%28%29)
+//!
+//! Some are currently not supported.
+//!
+//! | Supported | Type       | Built-In Variable    | Number for Type |
+//! | ---       | --------   | -------------------  | ---             |
+//! | ☑         | Number     | `v:t_number`         | 0               |
+//! | ☑         | String     | `v:t_string`         | 1               |
+//! | ☐         | Funcref    | `v:t_func`           | 2               |
+//! | ☑         | List       | `v:t_list`           | 3               |
+//! | ☐         | Dictionary | `v:t_dict`           | 4               |
+//! | ☑         | Float      | `v:t_float`          | 5               |
+//! | ☑         | Boolean    | `v:t_bool`           | 6               |
+//! | ☑         | None       | `v:t_none`           | 7               |
+//! | ☐         | Job        | `v:t_job`            | 8               |
+//! | ☐         | Channel    | `v:t_channel`        | 9               |
+//! | ☐         | Blob       | `v:t_blob`           | 10              |
+//!
+//! # Examples
+//!
+//! Basic usage of data types.
+//!
+//! ```
+//! // Float
+//! let vim_float = vii::DataType::Float(3.14);
+//! assert_eq!(vim_float.to_string(), "3.14");
+//! ```
+//!
+//! ```
+//! // String
+//! let vim_string = vii::DataType::String("Hello World!".to_string());
+//! assert_eq!(vim_string.to_string(), "\"Hello World!\"");
+//! ```
 
 use std::collections::HashMap;
 
-///Number:	    0  |v:t_number|
-///String:	    1  |v:t_string|
-///Funcref:    2  |v:t_func|
-///List:	    3  |v:t_list|
-///Dictionary: 4  |v:t_dict|
-///Float:	    5  |v:t_float|
-///Boolean:    6  |v:t_bool| (v:false and v:true)
-///None:	    7  |v:t_none| (v:null and v:none)
-///Job:	    8  |v:t_job|
-///Channel:    9  |v:t_channel|
-///Blob:	   10  |v:t_blob|
+/// A Vim datatype.
+///
+/// See the module-level documentation for more details: [`types`]
+///
+/// [`types`]: crate::types
 #[derive(Debug, PartialEq, Clone)]
 pub enum DataType {
     // TODO: Add the type ID (numbers)

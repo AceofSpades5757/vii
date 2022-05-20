@@ -1,21 +1,70 @@
-//! Vim Channels (channel.txt)
+//! Vim Channels
 //!
-//! Source: https://vimhelp.org/channel.txt.html#channel-commands
+//! Vim Documentation: [`:help channel.txt`](https://vimhelp.org/channel.txt.html#channel-commands)
 //!
-//! Vim has 5 different channel commands:
-//!     * redraw
-//!     * ex
-//!     * normal
-//!     * expr (2-way)
-//!     * call (2-way)
+//! Vim has 5 different channel commands. Ones denoted with `2-way` have an optional number
+//! argument that allows for 2-way communcation.
+//!
+//! * redraw
+//! * ex
+//! * normal
+//! * expr (2-way)
+//! * call (2-way)
+//!
+//! # Examples
+//!
+//! ```
+//! use vii::{
+//!     types::DataType,
+//!     channel::{
+//!         Call,
+//!         ChannelCommand,
+//!         Expression,
+//!     }
+//! };
+//!
+//! // Number of Lines in Current Buffer, as a Vim expression.
+//! // ["expr", "line('$')"]
+//! let expression = ChannelCommand::Expr(
+//!     Expression {
+//!         expression: "line('$')".to_string(),
+//!     },
+//!     None,
+//! );
+//!
+//! assert_eq!(
+//!     expression.to_string(),
+//!     r#"["expr", "line('$')"]"#
+//! );
+//!
+//! // Number of Lines in Current Buffer, as a function call.
+//! // ["call", "line", ["$"]]
+//! let call = ChannelCommand::Call(
+//!     Call {
+//!         function: "line".to_string(),
+//!         args: vec![DataType::String("$".to_string())],
+//!     },
+//!     None,
+//! );
+//!
+//! assert_eq!(
+//!     call.to_string(),
+//!     r#"["call", "line", ["$"]]"#
+//! );
+//! ```
 //!
 
 use crate::DataType;
 
+/// The optional <Number> that can be provided to some channel commands for 2-way communication.
+///
+/// It's just an i32 number, using the New Type pattern to make it clear what this number
+/// represents.
 #[derive(Debug, PartialEq)]
 pub struct RequestId(pub i32);
 
 /// Vim Ex Mode Command
+///
 /// e.g. `call myscript#MyFunc(arg)` to call a function inside Vim.
 #[derive(Debug, PartialEq)]
 pub struct ExCommand {
@@ -23,14 +72,16 @@ pub struct ExCommand {
 }
 
 /// Vim Normal Mode Command
-/// e.g. `Zo` to open folds
-/// e.g. `w` to move cursor forward a word
+///
+/// * e.g. `Zo` to open folds
+/// * e.g. `w` to move cursor forward a word
 #[derive(Debug, PartialEq)]
 pub struct NormalCommand {
     pub command: String,
 }
 
-/// Vim expression.
+/// Vim Expression
+///
 /// e.g. line('$')
 #[derive(Debug, PartialEq)]
 pub struct Expression {
@@ -48,6 +99,7 @@ impl Expression {
 }
 
 /// Vim Function Call
+///
 /// e.g. `:call line('$')`
 #[derive(Debug, PartialEq)]
 pub struct Call {
@@ -55,9 +107,11 @@ pub struct Call {
     pub args: Vec<DataType>,
 }
 
-/// Vim Function Call
-/// `:help channel-commands`
-/// e.g. `:call line('$')`
+/// Vim Channel Command
+///
+/// See the module-level documentation for more details: [`channel`]
+///
+/// [`channel`]: crate::channel
 #[derive(Debug, PartialEq)]
 pub enum ChannelCommand {
     Redraw { forced: bool },
@@ -75,6 +129,7 @@ impl Default for ChannelCommand {
 }
 
 impl ChannelCommand {
+    /// Turn into a Vim DataType object.
     fn to_datatypes(&self) -> Vec<DataType> {
         match self {
             ChannelCommand::Redraw { forced } => {

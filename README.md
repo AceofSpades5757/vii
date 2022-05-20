@@ -20,23 +20,25 @@ _Current interface is highly unstable._
 
 # Usage
 
+_If possible, use the examples directly from the documentation as they are more clear and tested._
+
 ## Plugin
 
-* _Note: Server plugins, or persistent plugins are not yet implemented._
-* _Note: FiletypePlugin, for a Vim filetype plugin, is not yet implemented._
+- _Note: Server plugins, or persistent plugins are not yet implemented._
+- _Note: FiletypePlugin, for a Vim filetype plugin, is not yet implemented._
 
 Creating a Vim plugin using Rust. Can be installed and run using the Vim plugin `rust-plug`.
 
 Acts _almost_ just like a Vim plugin would. It runs on startup, running it's code. Exceptions include adding `pythonx` code, the `autoload` directory, but it can still create functions, commands, global variables, and read from Vim itself.
 
-* Uses `PluginConfig` struct to add configuration support.
-* Uses `Plugin` trait to create a plugin.
-  * `get_config` - Get the configuration struct.
-  * `plugin` - The plugin, the important information.
+- Uses `PluginConfig` struct to add configuration support.
+- Uses `Plugin` trait to create a plugin.
+  - `get_config` - Get the configuration struct.
+  - `plugin` - The plugin, the important information.
 
 Here's an example, taken from [rust-plug proof of concept](https://github.com/AceofSpades5757/rust-plug-poc).
 
-``` toml
+```toml
 # Cargo.toml
 [package]
 name = "rust-plug-poc"
@@ -49,7 +51,7 @@ edition = "2021"
 vii = "0.0"
 ```
 
-``` rust
+```rust
 // src/main.rs
 use std::env;
 use std::net::TcpStream;
@@ -92,7 +94,9 @@ fn main() {
 
 Working with Vim data types.
 
-``` rust
+_See documentation for supported data types._
+
+```rust
 use vii::DataType;
 
 // Using a Vim data type
@@ -104,53 +108,36 @@ let vim_string = DataType::String("Hello World!".to_string());
 let serialized_string = vim_string.to_string();  // "\"Hello World!\""
 ```
 
-### Support
-
-List of data type support.
-
-- [x] Number
-- [x] String
-- [ ] Funcref
-- [x] List
-- [ ] Dictionary
-    * Work in progress using `HashMap<String, String>`
-- [x] Float
-- [x] Boolean
-- [x] None
-- [ ] Job
-- [ ] Channel
-- [ ] Blob
-
 ## Vim Channels
 
 Working with Vim channels (see `:help channel.txt` in Vim).
 
 _Note: This is a low-level API. The eventual, high-level API should look like `let expr = Expr::from("line('$')");`._
 
-``` rust
+```rust
 use vii::channel::{
-  ChannelCommand,
-  Call,
-  Expression,
+    ChannelCommand,
+    Call,
+    Expression,
 };
 
 // Number of Lines in Current Buffer
 // ["expr","line('$')"]
 let expression = ChannelCommand::Expr(
-  Expression {
-    expression: "line('$')".to_string(),
-  },
-  None,
+    Expression {
+        expression: "line('$')".to_string(),
+    },
+    None,
 );
 
 // Number of Lines in Current Buffer
 // ["call", "line", ["$"]]
 let call = ChannelCommand::Call(
-  Call {
-    function: "line".to_string(),
-    args: vec![DataType::String("$")],
-  },
-  None,
+    Call {
+        function: "line".to_string(),
+        args: vec![DataType::String("$")],
+    },
+    None,
 );
 
 
@@ -174,10 +161,10 @@ Unittests are in the same file, next to the units they are testing (bottom). Int
 
 Licensed under either of
 
- * Apache License, Version 2.0
-   ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)
- * MIT license
-   ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
+- Apache License, Version 2.0
+  ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)
+- MIT license
+  ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
 
 at your option.
 

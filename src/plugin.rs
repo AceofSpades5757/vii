@@ -1,5 +1,7 @@
 //! Vim Plugin
 //!
+//! Vim Documentation: [`:help plugin`](https://vimhelp.org/usr_05.txt.html#plugin)
+//!
 //! Acts as if it was a Vim plugin. It'll run once on startup, assuming the main function only runs
 //! it once, and can add functions, commands, global variables, and practically any other
 //! functionality that can be added by a typical Vim plugin.
