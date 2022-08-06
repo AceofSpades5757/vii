@@ -3,7 +3,7 @@ name = "vii"
 version = "0.0.18"
 authors = ["Kyle L. Davis <aceofspades5757.github@gmail.com>"]
 edition = "2021"
-description = "Bindings to Vim objects, bindings to Vim channel commands, and a way to interact with Vim using Rust."
+description = "Bindings to Vim objects, such as text properties, channel, and a way to interact with Vim using Rust."
 
 readme = "README.md"
 license = "MIT OR Apache-2.0"
@@ -12,6 +12,12 @@ homepage = "https://github.com/AceofSpades5757/vii"
 repository = "https://github.com/AceofSpades5757/vii"
 
 [dependencies]
+
+[features]
+default = ["textprop", "channel"]
+# https://vimhelp.org/textprop.txt.html
+textprop = []
+channel = []
 
 [profile.dev]
 opt-level = 0
