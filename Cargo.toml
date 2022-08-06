@@ -12,11 +12,12 @@ homepage = "https://github.com/AceofSpades5757/vii"
 repository = "https://github.com/AceofSpades5757/vii"
 
 [dependencies]
+serde_json = { version = "1.0.83", optional = true }
 
 [features]
 default = ["textprop", "channel"]
 # https://vimhelp.org/textprop.txt.html
-textprop = []
+textprop = ["serde_json"]
 channel = []
 
 [profile.dev]
