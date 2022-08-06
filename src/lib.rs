@@ -16,6 +16,9 @@
 pub mod types;
 pub use self::types::DataType;
 
+#[cfg(feature = "textprop")]
+pub mod textprop;
+#[cfg(feature = "channel")]
 pub mod channel;
 
 pub mod plugin;
