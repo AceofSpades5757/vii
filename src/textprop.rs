@@ -10,7 +10,7 @@
 //!
 //! https://vimhelp.org/textprop.txt.html
 
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 /// Text Property (Base)
 #[derive(Serialize, Deserialize)]
