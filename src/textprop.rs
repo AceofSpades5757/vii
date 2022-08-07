@@ -102,6 +102,7 @@ impl PropertyTypeBuilder {
     }
 }
 
+#[allow(unused_imports)]
 mod tests {
     use super::*;
 
