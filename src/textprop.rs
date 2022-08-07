@@ -28,7 +28,7 @@
 
 use std::str::FromStr;
 
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 type HighlightGroup = String;
 
@@ -92,7 +92,7 @@ impl PropertyTypeBuilder {
         self.priority = Some(priority);
         self
     }
-    pub fn start_include(mut self,start_include: bool) -> Self {
+    pub fn start_include(mut self, start_include: bool) -> Self {
         self.start_include = Some(start_include);
         self
     }
