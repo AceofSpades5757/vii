@@ -36,6 +36,8 @@
 
 use std::collections::HashMap;
 
+pub type Function = String; // TODO
+
 /// A Vim datatype.
 ///
 /// See the module-level documentation for more details: [`types`]
@@ -46,7 +48,7 @@ pub enum DataType {
     // TODO: Add the type ID (numbers)
     Number(i32),
     String(String),
-    Funcref, // TODO
+    Funcref(Function), // TODO
     List(Vec<DataType>),
     //Dictionary(HashMap<DataType::String, DataType>),  // TODO: implement
     Dictionary(HashMap<String, String>),
