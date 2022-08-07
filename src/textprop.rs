@@ -11,17 +11,12 @@
 //! https://vimhelp.org/textprop.txt.html
 //!
 //! ```
-//! use vii::textprop::{PropertyTypeBuilder, prop_type_add};
+//! use vii::textprop::PropertyTypeBuilder;
 //!
 //! // Create New Property
 //!
 //! // :call prop_type_add('number', {'highlight': 'Constant'})
 //! let prop_type = PropertyTypeBuilder::default().highlight("Constant".to_string()).build();
-//!
-//! //prop_type_add(String::from("number"), prop_type);
-//! // Add Property to some Text
-//!
-//! // :call prop_add('number', {'highlight': 'Constant'})
 //! ```
 
 use std::str::FromStr;
@@ -102,16 +97,6 @@ impl PropertyTypeBuilder {
     }
 }
 
-/// Vim Function
-// pub fn prop_type_add(name: String, props: PropertyType) -> super::channel::Call {
-// pub fn prop_type_add(name: String, props: PropertyType) -> super::types::Function {
-pub fn prop_type_add(name: String, props: PropertyType) -> Function {
-    todo!();
-}
-
-// This represents a text property in Vim.
-// {'id': 0, 'col': 12, 'type_bufnr': 0, 'end': 1, 'type': 'number', 'length': 3, 'start': 1}
-
 mod tests {
     use super::*;
 
@@ -145,10 +130,5 @@ mod tests {
             .highlight("Constant".to_string())
             .build();
         assert_eq!(pt.highlight, Some("Constant".to_string()));
-    }
-    #[test]
-    fn test_functions() {
-        let pt: PropertyType = Default::default();
-        prop_type_add(String::from("number"), pt);
     }
 }
