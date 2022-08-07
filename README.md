@@ -18,6 +18,10 @@ Add this line to your dependencies section of your `Cargo.toml` file.
 
 _Current interface is highly unstable._
 
+## Features
+
+Default comes with a lot of useful features, but there are a lot of features available, to increase the quality of your program.
+
 # Usage
 
 _If possible, use the examples directly from the documentation as they are more clear and tested._
@@ -108,7 +112,21 @@ let vim_string = DataType::String("Hello World!".to_string());
 let serialized_string = vim_string.to_string();  // "\"Hello World!\""
 ```
 
-## Vim Channels
+## Text Properties
+
+Working with Vim text properties (see `:help textprop.txt` in Vim).
+
+_Note: This is a low-level API._
+
+```rust
+use vii::textprops::{
+    TextProperties,
+    PropertyTypes,
+    prop_type_add,
+};
+```
+
+## Channels
 
 Working with Vim channels (see `:help channel.txt` in Vim).
 
