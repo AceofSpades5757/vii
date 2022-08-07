@@ -1,0 +1,16 @@
+[tasks.default]
+alias = "help"
+
+[tasks.help]
+args = ["""
+=== HELP ===
+test - Run tests for all features, docs, etc.
+"""]
+
+
+[tasks.test]
+alias = "all-tests"
+
+[tasks.all-tests]
+command = "cargo"
+args = ["test", "--all-features"]
