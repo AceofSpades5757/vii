@@ -11,11 +11,18 @@
 //! https://vimhelp.org/textprop.txt.html
 //!
 //! ```
+//! use vii::textprop::{
+//!     TextProperty,
+//!     PropertyType,
+//! };
 //! use vii::textprop::PropertyTypeBuilder;
 //!
 //! // Create New Property
 //!
-//! // :call prop_type_add('number', {'highlight': 'Constant'})
+//! let prop = TextProperty { id: 0, r#type: "number".to_string() };
+//!
+//! // Create New Property Type
+//!
 //! let prop_type = PropertyTypeBuilder::default().highlight("Constant".to_string()).build();
 //! ```
 
@@ -23,15 +30,13 @@ use std::str::FromStr;
 
 use serde::{Serialize, Deserialize};
 
-use super::types::Function;
-
 type HighlightGroup = String;
 
 /// Text Property (Base)
 #[derive(Serialize, Deserialize)]
 pub struct TextProperty {
-    id: i32,
-    r#type: String,
+    pub id: i32,
+    pub r#type: String,
 }
 
 /// Text Property Type
