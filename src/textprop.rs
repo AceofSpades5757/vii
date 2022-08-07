@@ -9,8 +9,21 @@
 //! Text properties do not have persistence outside of Vim. Once your instance closes, the text properties are removed as well.
 //!
 //! https://vimhelp.org/textprop.txt.html
+//!
+//! ```
+//! use vii::textprop::{PropertyTypeBuilder, prop_type_add};
+//!
+//! // Create New Property
+//! // :call prop_type_add('number', {'highlight': 'Constant'})
+//! let prop_type = PropertyTypeBuilder::default().highlight("Constant".to_string()).build();
+//! prop_type_add(String::from("number"), prop_type);
+//! // Add Property to some Text
+//! // :call prop_add('number', {'highlight': 'Constant'})
+//! ```
 
-use serde::{Deserialize, Serialize};
+use serde::{Serialize, Deserialize};
+
+type HighlightGroup = String;
 
 /// Text Property (Base)
 #[derive(Serialize, Deserialize)]
@@ -20,12 +33,56 @@ pub struct TextProperty {
 }
 
 /// Text Property Type
+#[derive(Default)]
 pub struct PropertyType {
-    highlight: Option<String>,
+    highlight: Option<HighlightGroup>,
     combine: Option<bool>,
     priority: Option<i32>,
     start_include: Option<bool>,
     end_include: Option<bool>,
+}
+
+#[derive(Default)]
+pub struct PropertyTypeBuilder {
+    highlight: Option<HighlightGroup>,
+    combine: Option<bool>,
+    priority: Option<i32>,
+    start_include: Option<bool>,
+    end_include: Option<bool>,
+}
+impl PropertyTypeBuilder {
+    pub fn build(self) -> PropertyType {
+        PropertyType {
+            highlight: self.highlight,
+            combine: self.combine,
+            priority: self.priority,
+            start_include: self.start_include,
+            end_include: self.end_include,
+        }
+    }
+}
+
+impl PropertyTypeBuilder {
+    pub fn highlight(mut self, highlight: HighlightGroup) -> Self {
+        self.highlight = Some(highlight);
+        self
+    }
+    pub fn combine(mut self, combine: bool) -> Self {
+        self.combine = Some(combine);
+        self
+    }
+    pub fn priority(mut self, priority: i32) -> Self {
+        self.priority = Some(priority);
+        self
+    }
+    pub fn start_include(mut self,start_include: bool) -> Self {
+        self.start_include = Some(start_include);
+        self
+    }
+    pub fn end_include(mut self, end_include: bool) -> Self {
+        self.end_include = Some(end_include);
+        self
+    }
 }
 
 /// Vim Function
@@ -35,3 +92,15 @@ pub fn prop_type_add(name: String, props: PropertyType) {
 
 // This represents a text property in Vim.
 // {'id': 0, 'col': 12, 'type_bufnr': 0, 'end': 1, 'type': 'number', 'length': 3, 'start': 1}
+
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_property_type() {
+        let pt = PropertyTypeBuilder::default()
+            .highlight("Constant".to_string())
+            .build();
+        assert_eq!(pt.highlight, Some("Constant".to_string()));
+    }
+}
