@@ -6,7 +6,7 @@
 
 [![rust badge](https://img.shields.io/static/v1?label=Made%20with&message=Rust&style=for-the-badge&logo=rust&labelColor=e82833&color=b11522)](https://www.rust-lang.org/)
 
-[Book](#)
+[Book](https://10341888.github.io/vii)
 
 Bindings to Vim objects and a wayt to interact with Vim using Rust, such as text properties, channels.
 
