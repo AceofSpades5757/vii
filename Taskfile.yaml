@@ -6,8 +6,10 @@ vars:
 
 tasks:
   default:
-    - task help
+    silent: true
+    cmd: task help
   help:
+    silent: true
     cmds:
       - task --list
   test:
@@ -26,3 +28,12 @@ tasks:
     dir: "{{.BOOK_DIR}}"
     cmds:
       - mdbook build
+  clean:
+    desc: Clean temp, cache, book, etc. files and directories.
+    cmds:
+      # Cargo Artifacts
+      - cargo clean
+      # mdbook Artifacts
+      - rm -f "./index.html"
+      - rm -f "{{.BOOK_DIR}}/index.html"
+      - rm -rf "{{.BOOK_DIR}}/book/"
