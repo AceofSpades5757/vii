@@ -1,12 +1,15 @@
 # Requires `go install github.com/go-task/task/v3/cmd/task@latest`
 version: "3"
 
+vars:
+  BOOK_DIR: "./book"
+
 tasks:
   default:
     - task help
   help:
     cmds:
-      - task --list-all
+      - task --list
   test:
     desc: Run tests.
     cmds:
@@ -14,5 +17,12 @@ tasks:
   book:
     # Requires `cargo install mdbook`
     desc: Serve book.
+    dir: "{{.BOOK_DIR}}"
     cmds:
       - mdbook serve --open
+  book-build:
+    # Requires `cargo install mdbook`
+    desc: Build book for publication.
+    dir: "{{.BOOK_DIR}}"
+    cmds:
+      - mdbook build
