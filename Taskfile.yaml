@@ -1,0 +1,12 @@
+version: "3"
+
+tasks:
+  default:
+    - task help
+  help:
+    cmds:
+      - task --list-all
+  test:
+    desc: Run tests.
+    cmds:
+      - cargo test --all-features
