@@ -100,12 +100,6 @@ fn main() {
 
 If there are any features you would like added, found any potential bugs, or have any questions, then feel free to create an issue.
 
-## Testing
-
-`cargo test`
-
-Unittests are in the same file, next to the units they are testing (bottom). Integration tests are in `/tests/`.
-
 # License
 
 Licensed under either of
