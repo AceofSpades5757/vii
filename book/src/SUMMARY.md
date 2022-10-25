@@ -1,11 +1,13 @@
 # Summary
 
-[Introduction](../README.md)
+[Introduction](./introduction.md)
 
-- [Quickstart](./chapter_1.md)
+- [Installation](./installation.md)
+- [Quickstart](./quickstart.md)
 
-- [Chapter 1](./chapter_1.md)
-- [Chapter 2](./chapter_1.md)
+- [Data Types](./data_types.md)
+- [Text Properties](./text_properties.md)
+- [Channels](./channels.md)
 
-- [Examples](./chapter_1.md)
-  - [Example 1](./chapter_1.md)
+- [Examples](./examples.md)
+  - [Simple Plugin](./plugin_simple.md)
