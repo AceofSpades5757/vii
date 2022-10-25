@@ -1,3 +1,4 @@
+# Requires `go install github.com/go-task/task/v3/cmd/task@latest`
 version: "3"
 
 tasks:
@@ -10,3 +11,8 @@ tasks:
     desc: Run tests.
     cmds:
       - cargo test --all-features
+  book:
+    # Requires `cargo install mdbook`
+    desc: Serve book.
+    cmds:
+      - mdbook serve --open
