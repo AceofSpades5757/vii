@@ -1,2 +1,4 @@
 /target
 Cargo.lock
+# mdbook files
+index.html
