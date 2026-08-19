@@ -3,7 +3,7 @@
 //! Vim Documentation: [`:help channel.txt`](https://vimhelp.org/channel.txt.html#channel-commands)
 //!
 //! Vim has 5 different channel commands. Ones denoted with `2-way` have an optional number
-//! argument that allows for 2-way communcation.
+//! argument that allows for 2-way communication.
 //!
 //! * redraw
 //! * ex

@@ -6,9 +6,9 @@
 
 [![rust badge](https://img.shields.io/static/v1?label=Made%20with&message=Rust&style=for-the-badge&logo=rust&labelColor=e82833&color=b11522)](https://www.rust-lang.org/)
 
-Bindings to Vim objects and a wayt to interact with Vim using Rust, such as text properties, channels.
+Bindings to Vim objects and a way to interact with Vim using Rust, such as text properties, channels.
 
-Using this library, you can wite standard plugins, all in Rust, which get run just like a Vim plugin would typically run.
+Using this library, you can write standard plugins, all in Rust, which get run just like a Vim plugin would typically run.
 
 # Installation
 
@@ -33,7 +33,7 @@ _If possible, use the examples directly from the documentation as they are more 
 
 Creating a Vim plugin using Rust. Can be installed and run using the Vim plugin `rust-plug`.
 
-Acts _almost_ just like a Vim plugin would. It runs on startup, running it's code. Exceptions include adding `pythonx` code, the `autoload` directory, but it can still create functions, commands, global variables, and read from Vim itself.
+Acts _almost_ just like a Vim plugin would. It runs on startup, running its code. Exceptions include adding `pythonx` code, the `autoload` directory, but it can still create functions, commands, global variables, and read from Vim itself.
 
 - Uses `PluginConfig` struct to add configuration support.
 - Uses `Plugin` trait to create a plugin.
